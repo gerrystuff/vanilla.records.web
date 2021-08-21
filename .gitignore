@@ -1,0 +1,8 @@
+#PG
+.well-known/
+.cgi-bin/
+tmp/
+.env
+.htaccess
+node_modules
+build/
