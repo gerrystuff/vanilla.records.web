@@ -1,6 +1,8 @@
+import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { fn } from './js/scripts';
 
-import './index.css';
+
 
 const btn = document.getElementById("#btn");
 const label = document.getElementById('#label');
