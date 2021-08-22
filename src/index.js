@@ -1,9 +1,9 @@
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { recordsArray, getRecords } from './app/services/records_service';
-import { formatDate } from './app/utils/formats'
+import { getRecords, createRecord } from './app/services/records_service';
+import { formatDate, serializeForm } from './app/utils/formats'
 
-const main = document.querySelector("main");
+const htmlRecords = document.querySelector("#records");
 
 getRecords().then(records => {
 
@@ -20,13 +20,41 @@ getRecords().then(records => {
         </div>
     </div>
         `
+
+
         let tempDiv = document.createElement('div');
 
         tempDiv.innerHTML = card;
 
-        main.appendChild(tempDiv);
+
+        htmlRecords.appendChild(tempDiv);
 
 
     }
+
+
+
+
+    // setRecordsForm();
+
+})
+
+document.getElementById("form-btn").addEventListener("click", function(event) {
+
+    event.preventDefault();
+    const km = document.getElementById("km").value;
+    const record = document.getElementById("record").value;
+
+    const tempRecord = {
+        "record": record,
+        "km": km
+    };
+
+
+    createRecord(tempRecord);
+
+
+
+
 
 })

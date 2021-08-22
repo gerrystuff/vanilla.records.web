@@ -9,26 +9,63 @@
 </head>
 
 <body>
-    <h1 class="p-2"> Records </h1>
-    <hr>
 
-
-    <main id="#main">
-
-
-    </main>
-
-    <!-- <form>
-        <div class="row">
-            <div class="col">
-                <input type="text" class="form-control" placeholder="First name">
-            </div>
-            <div class="col">
-                <input type="text" class="form-control" placeholder="Last name">
-            </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Records</a>
         </div>
-    </form> -->
+    </nav>
+    <div class="pt-4 main-container">
 
+        <div id="records" class='records'>
+        </div>
+
+        <hr/>
+        <div class=" p-2 form-records">
+            <div class="row">
+                <div class="col">
+                    <h3>Nuevo record</h3>
+
+                    <form>
+                        <div class="row">
+                            <div class="col">
+                                <label>Kilometros</label>
+                                <input id="km" type="number" min="1" max="5" class="form-control " placeholder="">
+                            </div>
+                            <div class="col">
+                                <div class="md-form">
+                                    <label>Record</label>
+                                    <input id="record" type="time" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+
+                    <div class="row pt-3">
+                        <div class="col">
+                            <button id="form-btn" type="button" class="form-control btn btn-primary">Guardar</button>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+                <div class="col">
+
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+
+    </div>
 </body>
 
 </html>

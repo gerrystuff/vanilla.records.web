@@ -8,11 +8,12 @@ const tempRecord = {
 }
 
 
-const createRecord = async() => {
+export const createRecord = async(record) => {
+
 
     fetch(baseUrl, {
         method: 'POST',
-        body: tempRecord,
+        body: JSON.stringify(record),
         headers: {
             'Content-type': 'application/json; charset=UTF-8'
         }
