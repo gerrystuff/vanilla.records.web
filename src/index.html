@@ -9,13 +9,15 @@
 </head>
 
 <body>
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Records</a>
-        </div>
-    </nav>
     <div class="pt-4 main-container">
+
+        <nav class="navbar navbar-expand-lg">
+            <div class="navbar-header">
+                <a class="navbar-brand " style="color: white;">Records</a>
+            </div>
+        </nav>
+
+
 
         <div id="records" class='records'>
         </div>
@@ -24,18 +26,18 @@
         <div class=" p-2 form-records">
             <div class="row">
                 <div class="col">
-                    <h3>Nuevo record</h3>
+                    <h3 style="color: white;">Nuevo record</h3>
 
                     <form>
                         <div class="row">
                             <div class="col">
-                                <label>Kilometros</label>
-                                <input id="km" type="number" min="1" max="5" class="form-control " placeholder="">
+                                <label class="form-label">Kilometros</label>
+                                <input onfocus="this.value=''; this.style.color='red'" id="km" type="number" min="1" style="background-color: transparent;" max="5" class="form-control " placeholder="">
                             </div>
                             <div class="col">
                                 <div class="md-form">
-                                    <label>Record</label>
-                                    <input id="record" type="time" class="form-control">
+                                    <label class="form-label">Record</label>
+                                    <input onfocus="this.value=''; this.style.color='red'" style="background-color: transparent;" id="record" type="time" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -53,10 +55,22 @@
 
                 </div>
 
-                <div class="col">
+                <div class="col spin">
+                    <div id="alert" class="alert">
+                    </div>
+
+                    <div id="customspinner" class="" role="status">
+
+                    </div>
+
 
 
                 </div>
+
+                <!-- <div class="col">
+
+
+                </div> -->
             </div>
 
 

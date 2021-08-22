@@ -2,22 +2,21 @@ const baseUrl = 'http://localhost:8080/api/records';
 
 
 
-const tempRecord = {
-    "record": "08:35:00",
-    "km": 1
-}
+export async function createRecord() {
 
-
-export const createRecord = async(record) => {
-
-
-    fetch(baseUrl, {
+    return await fetch(baseUrl, {
         method: 'POST',
         body: JSON.stringify(record),
         headers: {
             'Content-type': 'application/json; charset=UTF-8'
         }
-    }).then(res => console.log(res));
+    }).then(function(response) {
+        if (response.ok) {
+            return true;
+        } else {
+            return false;
+        }
+    });
 }
 
 
