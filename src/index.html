@@ -32,13 +32,17 @@
                         <div class="row">
                             <div class="col">
                                 <label class="form-label">Kilometros</label>
-                                <input onfocus="this.value=''; this.style.color='red'" id="km" type="number" min="1" style="background-color: transparent;" max="5" class="form-control " placeholder="">
+                                <input onfocus="this.value=''; this.style.color='red'" value="0" id="km" type="number" min="1" style="background-color: transparent; color: white;" max="5" class="form-control " placeholder="">
                             </div>
                             <div class="col">
                                 <div class="md-form">
                                     <label class="form-label">Record</label>
-                                    <input onfocus="this.value=''; this.style.color='red'" style="background-color: transparent;" id="record" type="time" class="form-control">
+                                    <input onfocus="this.value=''; this.style.color='red'" style="background-color: transparent; color: white;" id="record" type="time" class="form-control">
                                 </div>
+                            </div>
+                            <div class="col">
+                                <label class="form-label">Fecha</label>
+                                <input class="form-control" id="datePicker" style="background-color:transparent; color:white;" id="date" type="date">
                             </div>
                         </div>
                     </form>

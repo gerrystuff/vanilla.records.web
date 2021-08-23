@@ -1,22 +1,42 @@
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { getRecords, createRecord } from './app/services/records_service';
+import $ from 'jquery';
+import { getRecords, createRecord, deleteRecord } from './app/services/records_service';
 import { formatDate } from './app/utils/formats'
 
 const htmlRecords = document.querySelector("#records");
 
+let recordsList = [];
+
+// Date.prototype.toDateInputValue = (function() {
+//     var local = new Date(this);
+//     local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+//     return local.toJSON().slice(0, 10);
+// });
+
+// document.getElementById('datePicker').value = new Date().toDateInputValue();
+
+
 getRecords().then(records => {
+
+    recordsList = records;
+
+    console.log(recordsList);
+
 
     for (let i = 0; i < records.length; i++) {
 
         const date = formatDate(records[i].createdAt)
+        console.log(date);
 
         const card = `
         <div class="card text-center">
         <div class="card-body">
             <h5 class="card-title" style="color:green">${date}</h5>
-            <h6 class="card-subtitle mb-2 " style="color:white;">Total km: ${records[i].km}</h6>
-            <legend style="color: white;">${records[i].record}</legend>
+            <h6 class="card-subtitle mb-2 " style="color:white;">Total km: ${recordsList[i].km}</h6>
+            <legend style="color: white;">${recordsList[i].record}</legend>
+            <img class="trash-icon" id="${recordsList[i].id}" value="20" src="./assets/images/trash.svg" alt="">
+            
         </div>
     </div>
         `
@@ -30,7 +50,16 @@ getRecords().then(records => {
         htmlRecords.appendChild(tempDiv);
 
 
+        //Funcion para eliminar el record seleccionado
+
+        $(`#${recordsList[i].id}`).on("click", function(event) {
+            deleteRecord(recordsList[i].id);
+            document.location.reload();
+        });
+
     }
+
+
 
 
 
@@ -38,18 +67,22 @@ getRecords().then(records => {
 
 })
 
+
+
 document.getElementById("form-btn").addEventListener("click", async function(event) {
 
     event.preventDefault();
 
     const km = document.getElementById("km").value;
     const record = document.getElementById("record").value;
+    const datePicker = document.getElementById("datePicker").value;
+
     const spin = document.getElementById("customspinner");
     const alert = document.getElementById("alert");
 
 
-    if (km.length < 1 || record.length < 1) {
-        console.log(km.length, '::', record.length)
+    if (km < 1 || record < 1) {
+        console.log(km, '::', record.length)
         const warning = `Ingrese valores`;
         alert.innerHTML = warning;
         return;
@@ -61,12 +94,14 @@ document.getElementById("form-btn").addEventListener("click", async function(eve
 
     const tempRecord = {
         "record": record,
-        "km": km
+        "km": km,
+        "createdAt": datePicker
     };
 
+    console.log(tempRecord);
 
-    // const save = await createRecord(tempRecord);
-    await createRecord(tempRecord).then((ok) => {
+
+    await createRecord(tempRecord).then(async(ok) => {
 
         if (ok) {
             const warning = `Record creado con exito.`;
@@ -74,6 +109,9 @@ document.getElementById("form-btn").addEventListener("click", async function(eve
 
             spin.classList.remove("spinner-border");
             spin.classList.remove("text-light");
+
+            await delay(1500);
+            document.location.reload();
 
         } else {
             const warning = `Error en el servidor.`;
@@ -87,23 +125,6 @@ document.getElementById("form-btn").addEventListener("click", async function(eve
 
     });
 
-    // console.log('what', save);
-
-
-    // if (save) {
-    //     const warning = `Record creado con exito.`;
-    //     alert.innerHTML = warning;
-
-    //     spin.classList.remove("spinner-border");
-    //     spin.classList.remove("text-light");
-
-
-    // } else {
-    //     const warning = `Error en el servidor.`;
-    //     alert.innerHTML = warning;
-
-    //     spin.classList.remove("spinner-border");
-    //     spin.classList.remove("text-light");
-    // }
-
 })
+
+const delay = ms => new Promise(res => setTimeout(res, ms));
